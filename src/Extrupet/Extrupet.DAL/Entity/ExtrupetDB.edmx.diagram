@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="182b100367674c0f93b04493721e4815" Name="Diagram1" >
+        <EntityTypeShape EntityType="ExtrupetModel.CompanySetup" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="ExtrupetModel.GradeMaster" Width="1.5" PointX="5.25" PointY="14.375" />
+        <EntityTypeShape EntityType="ExtrupetModel.GradeTypeMaster" Width="1.5" PointX="6" PointY="3.625" />
+        <EntityTypeShape EntityType="ExtrupetModel.ProductMaster" Width="1.5" PointX="8.25" PointY="6.25" />
+        <EntityTypeShape EntityType="ExtrupetModel.QualityMeasurementUnitMaster" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="ExtrupetModel.QualityParameterMaster" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="ExtrupetModel.TestMethodMaster" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ExtrupetModel.UserMaster" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="ExtrupetModel.UserRoleMaster" Width="1.5" PointX="0.75" PointY="6.375" />
+        <AssociationConnector Association="ExtrupetModel.FK_CompanySetup_UserMaster1" />
+        <AssociationConnector Association="ExtrupetModel.FK_GradeMaster_UserMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_ProductMaster_GradeTypeMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_ProductMaster_UserMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_QualityParameterMaster_QualityMeasurementUnitMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_QualityParameterMaster_UserMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_UserMaster_UserMaster" />
+        <AssociationConnector Association="ExtrupetModel.FK_UserMaster_UserRoleMaster" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

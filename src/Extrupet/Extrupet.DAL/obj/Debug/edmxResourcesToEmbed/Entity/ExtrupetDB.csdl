@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExtrupetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ExtrupetEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CompanySetups" EntityType="ExtrupetModel.CompanySetup" />
+    <EntitySet Name="GradeMasters" EntityType="ExtrupetModel.GradeMaster" />
+    <EntitySet Name="GradeTypeMasters" EntityType="ExtrupetModel.GradeTypeMaster" />
+    <EntitySet Name="ProductMasters" EntityType="ExtrupetModel.ProductMaster" />
+    <EntitySet Name="QualityMeasurementUnitMasters" EntityType="ExtrupetModel.QualityMeasurementUnitMaster" />
+    <EntitySet Name="QualityParameterMasters" EntityType="ExtrupetModel.QualityParameterMaster" />
+    <EntitySet Name="TestMethodMasters" EntityType="ExtrupetModel.TestMethodMaster" />
+    <EntitySet Name="UserMasters" EntityType="ExtrupetModel.UserMaster" />
+    <EntitySet Name="UserRoleMasters" EntityType="ExtrupetModel.UserRoleMaster" />
+    <AssociationSet Name="FK_CompanySetup_UserMaster1" Association="ExtrupetModel.FK_CompanySetup_UserMaster1">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="CompanySetup" EntitySet="CompanySetups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeMaster_UserMaster" Association="ExtrupetModel.FK_GradeMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="GradeMaster" EntitySet="GradeMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaster_GradeTypeMaster" Association="ExtrupetModel.FK_ProductMaster_GradeTypeMaster">
+      <End Role="GradeTypeMaster" EntitySet="GradeTypeMasters" />
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaster_UserMaster" Association="ExtrupetModel.FK_ProductMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster" Association="ExtrupetModel.FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+      <End Role="QualityMeasurementUnitMaster" EntitySet="QualityMeasurementUnitMasters" />
+      <End Role="QualityParameterMaster" EntitySet="QualityParameterMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QualityParameterMaster_UserMaster" Association="ExtrupetModel.FK_QualityParameterMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="QualityParameterMaster" EntitySet="QualityParameterMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_UserMaster" Association="ExtrupetModel.FK_UserMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="UserMaster1" EntitySet="UserMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_UserRoleMaster" Association="ExtrupetModel.FK_UserMaster_UserRoleMaster">
+      <End Role="UserRoleMaster" EntitySet="UserRoleMasters" />
+      <End Role="UserMaster" EntitySet="UserMasters" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CompanySetup">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserMaster" Relationship="ExtrupetModel.FK_CompanySetup_UserMaster1" FromRole="CompanySetup" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="GradeMaster">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GradeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserMaster" Relationship="ExtrupetModel.FK_GradeMaster_UserMaster" FromRole="GradeMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="GradeTypeMaster">
+    <Key>
+      <PropertyRef Name="GradeTypeId" />
+    </Key>
+    <Property Name="GradeTypeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GradeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductMasters" Relationship="ExtrupetModel.FK_ProductMaster_GradeTypeMaster" FromRole="GradeTypeMaster" ToRole="ProductMaster" />
+  </EntityType>
+  <EntityType Name="ProductMaster">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="GradeTypeId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="GradeTypeMaster" Relationship="ExtrupetModel.FK_ProductMaster_GradeTypeMaster" FromRole="ProductMaster" ToRole="GradeTypeMaster" />
+    <NavigationProperty Name="UserMaster" Relationship="ExtrupetModel.FK_ProductMaster_UserMaster" FromRole="ProductMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="QualityMeasurementUnitMaster">
+    <Key>
+      <PropertyRef Name="QualityMeasurementUnitId" />
+    </Key>
+    <Property Name="QualityMeasurementUnitId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QualityMeasurementUnitName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QualityParameterMasters" Relationship="ExtrupetModel.FK_QualityParameterMaster_QualityMeasurementUnitMaster" FromRole="QualityMeasurementUnitMaster" ToRole="QualityParameterMaster" />
+  </EntityType>
+  <EntityType Name="QualityParameterMaster">
+    <Key>
+      <PropertyRef Name="QualityParameterId" />
+    </Key>
+    <Property Name="QualityParameterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QualityParameterName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QualityMeasurementUnitId" Type="Byte" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="QualityMeasurementUnitMaster" Relationship="ExtrupetModel.FK_QualityParameterMaster_QualityMeasurementUnitMaster" FromRole="QualityParameterMaster" ToRole="QualityMeasurementUnitMaster" />
+    <NavigationProperty Name="UserMaster" Relationship="ExtrupetModel.FK_QualityParameterMaster_UserMaster" FromRole="QualityParameterMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="TestMethodMaster">
+    <Key>
+      <PropertyRef Name="TestMethodId" />
+    </Key>
+    <Property Name="TestMethodId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestMethodName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Byte" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CompanySetups" Relationship="ExtrupetModel.FK_CompanySetup_UserMaster1" FromRole="UserMaster" ToRole="CompanySetup" />
+    <NavigationProperty Name="GradeMasters" Relationship="ExtrupetModel.FK_GradeMaster_UserMaster" FromRole="UserMaster" ToRole="GradeMaster" />
+    <NavigationProperty Name="ProductMasters" Relationship="ExtrupetModel.FK_ProductMaster_UserMaster" FromRole="UserMaster" ToRole="ProductMaster" />
+    <NavigationProperty Name="QualityParameterMasters" Relationship="ExtrupetModel.FK_QualityParameterMaster_UserMaster" FromRole="UserMaster" ToRole="QualityParameterMaster" />
+    <NavigationProperty Name="UserMaster1" Relationship="ExtrupetModel.FK_UserMaster_UserMaster" FromRole="UserMaster" ToRole="UserMaster1" />
+    <NavigationProperty Name="UserMaster2" Relationship="ExtrupetModel.FK_UserMaster_UserMaster" FromRole="UserMaster1" ToRole="UserMaster" />
+    <NavigationProperty Name="UserRoleMaster" Relationship="ExtrupetModel.FK_UserMaster_UserRoleMaster" FromRole="UserMaster" ToRole="UserRoleMaster" />
+  </EntityType>
+  <EntityType Name="UserRoleMaster">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleAlias" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="UserMasters" Relationship="ExtrupetModel.FK_UserMaster_UserRoleMaster" FromRole="UserRoleMaster" ToRole="UserMaster" />
+  </EntityType>
+  <Association Name="FK_CompanySetup_UserMaster1">
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.CompanySetup" Role="CompanySetup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CompanySetup">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeMaster_UserMaster">
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.GradeMaster" Role="GradeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="GradeMaster">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaster_GradeTypeMaster">
+    <End Type="ExtrupetModel.GradeTypeMaster" Role="GradeTypeMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.ProductMaster" Role="ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GradeTypeMaster">
+        <PropertyRef Name="GradeTypeId" />
+      </Principal>
+      <Dependent Role="ProductMaster">
+        <PropertyRef Name="GradeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaster_UserMaster">
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.ProductMaster" Role="ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ProductMaster">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+    <End Type="ExtrupetModel.QualityMeasurementUnitMaster" Role="QualityMeasurementUnitMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.QualityParameterMaster" Role="QualityParameterMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QualityMeasurementUnitMaster">
+        <PropertyRef Name="QualityMeasurementUnitId" />
+      </Principal>
+      <Dependent Role="QualityParameterMaster">
+        <PropertyRef Name="QualityMeasurementUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QualityParameterMaster_UserMaster">
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.QualityParameterMaster" Role="QualityParameterMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="QualityParameterMaster">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_UserMaster">
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserMaster1">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_UserRoleMaster">
+    <End Type="ExtrupetModel.UserRoleMaster" Role="UserRoleMaster" Multiplicity="1" />
+    <End Type="ExtrupetModel.UserMaster" Role="UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleMaster">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

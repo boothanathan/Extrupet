@@ -1,0 +1,2 @@
+D:\SvkGit\Extrupet\Project\ExtrupetAPI_Ravi\Extrupet\src\Extrupet\Extrupet.API\obj\Debug\Extrupet.API_Old.csprojAssemblyReference.cache
+D:\SvkGit\Extrupet\Project\ExtrupetAPI_Ravi\Extrupet\src\Extrupet\Extrupet.API\obj\Debug\Extrupet.API_Old.csproj.CoreCompileInputs.cache

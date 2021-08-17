@@ -54,59 +54,64 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\CompanySetup.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ExtrupetDB.Context.cs">
+    <Compile Include="Entity\ExtrupetEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtrupetDB.Context.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ExtrupetDB.cs">
+    <Compile Include="Entity\ExtrupetEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ExtrupetDB.Designer.cs">
+    <Compile Include="Entity\ExtrupetEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtrupetDB.edmx</DependentUpon>
+      <DependentUpon>ExtrupetEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\GradeMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\GradeTypeMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\GradeWiseQualityParameterBaseData.cs">
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\ProductMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\QualityMeasurementUnitMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\QualityParameterMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\TestMethodMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\UserMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\UserRoleMaster.cs">
-      <DependentUpon>ExtrupetDB.tt</DependentUpon>
+      <DependentUpon>ExtrupetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericQuery.cs" />
+    <Compile Include="Repository\CompanyDataRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\UserRoleMasterRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Entity\ExtrupetDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ExtrupetDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="Entity\ExtrupetDB.edmx.diagram">
-      <DependentUpon>ExtrupetDB.edmx</DependentUpon>
+    <EntityDeploy Include="Entity\ExtrupetEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ExtrupetEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\ExtrupetEntities.edmx.diagram">
+      <DependentUpon>ExtrupetEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -114,15 +119,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\ExtrupetDB.Context.tt">
+    <Content Include="Entity\ExtrupetEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ExtrupetDB.edmx</DependentUpon>
-      <LastGenOutput>ExtrupetDB.Context.cs</LastGenOutput>
+      <DependentUpon>ExtrupetEntities.edmx</DependentUpon>
+      <LastGenOutput>ExtrupetEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entity\ExtrupetDB.tt">
+    <Content Include="Entity\ExtrupetEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ExtrupetDB.edmx</DependentUpon>
-      <LastGenOutput>ExtrupetDB.cs</LastGenOutput>
+      <DependentUpon>ExtrupetEntities.edmx</DependentUpon>
+      <LastGenOutput>ExtrupetEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

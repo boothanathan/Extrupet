@@ -1,0 +1,11 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Extrupet.BAL/bin
+/Extrupet.BAL/obj
+/Extrupet.DAL/bin
+/Extrupet.DAL/obj
+/Extrupet.API/bin
+/Extrupet.API/obj

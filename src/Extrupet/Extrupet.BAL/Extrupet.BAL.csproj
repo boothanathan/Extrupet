@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IUserRoleMasterService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\CompanyData.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRoleMaster.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,6 +23,12 @@ namespace Extrupet.BAL.Services
             mapper = new MapperProfile().Mapper;
         }
 
+        public UserGet CreateUser(UserSet userSet)
+        {
+            var user = userDAL.CreateUser(mapper.Map<UserMaster>(userSet));
+            return mapper.Map<UserGet>(user);
+        }
+
         public IEnumerable<UserGet> GetAllUsers()
         {
             var userRoleMaster = userDAL.GetAllUsers().ToList();
@@ -33,6 +39,26 @@ namespace Extrupet.BAL.Services
             }
 
             return userGets;
+        }
+        
+        public UserGet Login(UserLogin userLogin)
+        {
+            var user = userDAL.GetUser(userLogin.LoginId);
+            if(user != null)
+            {
+                if(user.Password == userLogin.Password) // Need to decrypt
+                {
+                    return mapper.Map<UserGet>(user);
+                }
+            }
+
+            return null;
+        }
+
+        public UserGet UpdateUser(UserSet userSet)
+        {
+            var user = userDAL.UpdateUser(mapper.Map<UserMaster>(userSet));
+            return mapper.Map<UserGet>(user);
         }
     }
 }

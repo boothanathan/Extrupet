@@ -44,19 +44,21 @@ namespace Extrupet.DAL.Repository
                 {
                     dbEntityEntry.Property(property).IsModified = true;
                 }
+                
             }
-            //else
-            //{
-            //    //no items mentioned, so find out the updated entries
-            //    foreach (var property in dbEntityEntry.OriginalValues.PropertyNames)
-            //    {
-            //        var original = dbEntityEntry.OriginalValues.GetValue<object>(property);
-            //        var current = dbEntityEntry.CurrentValues.GetValue<object>(property);
-            //        if (original != null && !original.Equals(current))
-            //            dbEntityEntry.Property(property).IsModified = true;
-            //    }
-            //}
+            else
+            {
+                //no items mentioned, so find out the updated entries
+                foreach (var property in dbEntityEntry.OriginalValues.PropertyNames)
+                {
+                    var original = dbEntityEntry.OriginalValues.GetValue<object>(property);
+                    var current = dbEntityEntry.CurrentValues.GetValue<object>(property);
+                    if (original != null && !original.Equals(current))
+                        dbEntityEntry.Property(property).IsModified = true;
+                }
+            }
 
+            
             return entity;
         }
         public virtual T Update(T entity, params Expression<Func<T, object>>[] updatedProperties)

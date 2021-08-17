@@ -6,6 +6,8 @@ namespace Extrupet.BAL.Interfaces
     public interface IUserService
     {
         IEnumerable<UserGet> GetAllUsers();
-        //UserGet SaveUsers(UserSet user);
+        UserGet Login(UserLogin userLogin);
+        UserGet CreateUser(UserSet userSet);
+        UserGet UpdateUser(UserSet userSet);
     }
 }

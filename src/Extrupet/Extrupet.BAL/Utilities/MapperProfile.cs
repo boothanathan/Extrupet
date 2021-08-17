@@ -22,6 +22,9 @@ namespace Extrupet.BAL.Utilities
 
                 cfg.CreateMap<CompanySetup, CompanyDataGet>();
                 cfg.CreateMap<CompanyDataSet, CompanySetup>();
+                
+                cfg.CreateMap<UserSet, UserMaster>();
+                cfg.CreateMap<UserMaster, UserGet>();
             });
             Mapper = new Mapper(config);
         }

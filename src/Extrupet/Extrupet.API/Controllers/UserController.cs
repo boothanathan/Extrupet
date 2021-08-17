@@ -1,4 +1,5 @@
 using Extrupet.BAL.Interfaces;
+using Extrupet.BAL.Models;
 using Extrupet.BAL.Services;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,34 @@ namespace Extrupet.API.Controllers
         {
             return Ok(userService.GetAllUsers());
         }
+
+        [HttpPost]
+        [Route("CreateUser")]
+        public IHttpActionResult CreateUser(UserSet userSet)
+        {
+            var user = userService.CreateUser(userSet);
+            return Ok(user);
+        }
+        [HttpPost]
+        [Route("UpdateUser")]
+        public IHttpActionResult UpdateUser(UserSet userSet)
+        {
+            var user = userService.UpdateUser(userSet);
+            return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public IHttpActionResult Login(UserLogin userLogin)
+        {
+            var user = userService.Login(userLogin);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return Unauthorized();
+        }
+
     }
 }

@@ -19,6 +19,33 @@ namespace Extrupet.DAL.Repository
         {
             return base.GetQuery(null);
         }
+        
+        public UserMaster CreateUser(UserMaster userMaster)
+        {
+            userMaster.UserId= Guid.NewGuid();
+            userMaster.LastUpdatedOnUTC = DateTime.UtcNow;
+            return base.Add(userMaster);
+        } 
+
+        public UserMaster UpdateUser(UserMaster userMaster)
+        {            
+            userMaster.LastUpdatedOnUTC = DateTime.UtcNow;
+            return base.Update(userMaster);
+        } 
+
+        public UserMaster GetUser(string userId)
+        {
+            var user =  base.GetQuery(x=>x.EmailId == userId).FirstOrDefault();
+            if(user == null)
+            {
+                base.GetQuery(x=>x.EmployeeId== userId).FirstOrDefault();
+            }
+
+            return user;
+        } 
+        
+        
+        
 
         public UserMaster SaveUsers(UserMaster userMaster)
         {

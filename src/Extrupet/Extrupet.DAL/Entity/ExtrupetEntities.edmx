@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExtrupetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CompanySetup">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeMaster">
+          <Key>
+            <PropertyRef Name="GradeId" />
+          </Key>
+          <Property Name="GradeId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeTypeMaster">
+          <Key>
+            <PropertyRef Name="GradeTypeId" />
+          </Key>
+          <Property Name="GradeTypeId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradeType" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeWiseQualityParameterBaseData">
+          <Key>
+            <PropertyRef Name="BaseDataId" />
+          </Key>
+          <Property Name="BaseDataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradeId" Type="tinyint" Nullable="false" />
+          <Property Name="QualityParameterId" Type="smallint" Nullable="false" />
+          <Property Name="BaseValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TestMethodId" Type="tinyint" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="GradeTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QualityMeasurementUnitMaster">
+          <Key>
+            <PropertyRef Name="QualityMeasurementUnitId" />
+          </Key>
+          <Property Name="QualityMeasurementUnitId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QualityMeasurementUnitName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QualityParameterMaster">
+          <Key>
+            <PropertyRef Name="QualityParameterId" />
+          </Key>
+          <Property Name="QualityParameterId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QualityParameterName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="QualityMeasurementUnitId" Type="tinyint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestMethodMaster">
+          <Key>
+            <PropertyRef Name="TestMethodId" />
+          </Key>
+          <Property Name="TestMethodId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestMethodName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="tinyint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRoleMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleAlias" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_GradeMaster">
+          <End Role="GradeMaster" Type="Self.GradeMaster" Multiplicity="1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeMaster">
+              <PropertyRef Name="GradeId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_QualityParameterMaster">
+          <End Role="QualityParameterMaster" Type="Self.QualityParameterMaster" Multiplicity="1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityParameterMaster">
+              <PropertyRef Name="QualityParameterId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="QualityParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_TestMethodMaster">
+          <End Role="TestMethodMaster" Type="Self.TestMethodMaster" Multiplicity="0..1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMethodMaster">
+              <PropertyRef Name="TestMethodId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="TestMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_GradeTypeMaster">
+          <End Role="GradeTypeMaster" Type="Self.GradeTypeMaster" Multiplicity="1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeTypeMaster">
+              <PropertyRef Name="GradeTypeId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="GradeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+          <End Role="QualityMeasurementUnitMaster" Type="Self.QualityMeasurementUnitMaster" Multiplicity="1" />
+          <End Role="QualityParameterMaster" Type="Self.QualityParameterMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityMeasurementUnitMaster">
+              <PropertyRef Name="QualityMeasurementUnitId" />
+            </Principal>
+            <Dependent Role="QualityParameterMaster">
+              <PropertyRef Name="QualityMeasurementUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_UserRoleMaster">
+          <End Role="UserRoleMaster" Type="Self.UserRoleMaster" Multiplicity="1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoleMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExtrupetModelStoreContainer">
+          <EntitySet Name="CompanySetup" EntityType="Self.CompanySetup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeMaster" EntityType="Self.GradeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeTypeMaster" EntityType="Self.GradeTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeWiseQualityParameterBaseData" EntityType="Self.GradeWiseQualityParameterBaseData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QualityMeasurementUnitMaster" EntityType="Self.QualityMeasurementUnitMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QualityParameterMaster" EntityType="Self.QualityParameterMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestMethodMaster" EntityType="Self.TestMethodMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoleMaster" EntityType="Self.UserRoleMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_GradeMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_GradeMaster">
+            <End Role="GradeMaster" EntitySet="GradeMaster" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_QualityParameterMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_QualityParameterMaster">
+            <End Role="QualityParameterMaster" EntitySet="QualityParameterMaster" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_TestMethodMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_TestMethodMaster">
+            <End Role="TestMethodMaster" EntitySet="TestMethodMaster" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_GradeTypeMaster" Association="Self.FK_ProductMaster_GradeTypeMaster">
+            <End Role="GradeTypeMaster" EntitySet="GradeTypeMaster" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster" Association="Self.FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+            <End Role="QualityMeasurementUnitMaster" EntitySet="QualityMeasurementUnitMaster" />
+            <End Role="QualityParameterMaster" EntitySet="QualityParameterMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserRoleMaster" Association="Self.FK_UserMaster_UserRoleMaster">
+            <End Role="UserRoleMaster" EntitySet="UserRoleMaster" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExtrupetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompanySetup">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeMaster">
+          <Key>
+            <PropertyRef Name="GradeId" />
+          </Key>
+          <Property Name="GradeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GradeWiseQualityParameterBaseDatas" Relationship="Self.FK_GradeWiseQualityParameterBaseData_GradeMaster" FromRole="GradeMaster" ToRole="GradeWiseQualityParameterBaseData" />
+        </EntityType>
+        <EntityType Name="GradeTypeMaster">
+          <Key>
+            <PropertyRef Name="GradeTypeId" />
+          </Key>
+          <Property Name="GradeTypeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductMasters" Relationship="Self.FK_ProductMaster_GradeTypeMaster" FromRole="GradeTypeMaster" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="GradeWiseQualityParameterBaseData">
+          <Key>
+            <PropertyRef Name="BaseDataId" />
+          </Key>
+          <Property Name="BaseDataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeId" Type="Byte" Nullable="false" />
+          <Property Name="QualityParameterId" Type="Int16" Nullable="false" />
+          <Property Name="BaseValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestMethodId" Type="Byte" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GradeMaster" Relationship="Self.FK_GradeWiseQualityParameterBaseData_GradeMaster" FromRole="GradeWiseQualityParameterBaseData" ToRole="GradeMaster" />
+          <NavigationProperty Name="QualityParameterMaster" Relationship="Self.FK_GradeWiseQualityParameterBaseData_QualityParameterMaster" FromRole="GradeWiseQualityParameterBaseData" ToRole="QualityParameterMaster" />
+          <NavigationProperty Name="TestMethodMaster" Relationship="Self.FK_GradeWiseQualityParameterBaseData_TestMethodMaster" FromRole="GradeWiseQualityParameterBaseData" ToRole="TestMethodMaster" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GradeTypeId" Type="Byte" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GradeTypeMaster" Relationship="Self.FK_ProductMaster_GradeTypeMaster" FromRole="ProductMaster" ToRole="GradeTypeMaster" />
+        </EntityType>
+        <EntityType Name="QualityMeasurementUnitMaster">
+          <Key>
+            <PropertyRef Name="QualityMeasurementUnitId" />
+          </Key>
+          <Property Name="QualityMeasurementUnitId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QualityMeasurementUnitName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="QualityParameterMasters" Relationship="Self.FK_QualityParameterMaster_QualityMeasurementUnitMaster" FromRole="QualityMeasurementUnitMaster" ToRole="QualityParameterMaster" />
+        </EntityType>
+        <EntityType Name="QualityParameterMaster">
+          <Key>
+            <PropertyRef Name="QualityParameterId" />
+          </Key>
+          <Property Name="QualityParameterId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QualityParameterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QualityMeasurementUnitId" Type="Byte" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GradeWiseQualityParameterBaseDatas" Relationship="Self.FK_GradeWiseQualityParameterBaseData_QualityParameterMaster" FromRole="QualityParameterMaster" ToRole="GradeWiseQualityParameterBaseData" />
+          <NavigationProperty Name="QualityMeasurementUnitMaster" Relationship="Self.FK_QualityParameterMaster_QualityMeasurementUnitMaster" FromRole="QualityParameterMaster" ToRole="QualityMeasurementUnitMaster" />
+        </EntityType>
+        <EntityType Name="TestMethodMaster">
+          <Key>
+            <PropertyRef Name="TestMethodId" />
+          </Key>
+          <Property Name="TestMethodId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestMethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GradeWiseQualityParameterBaseDatas" Relationship="Self.FK_GradeWiseQualityParameterBaseData_TestMethodMaster" FromRole="TestMethodMaster" ToRole="GradeWiseQualityParameterBaseData" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Byte" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="UserRoleMaster" Relationship="Self.FK_UserMaster_UserRoleMaster" FromRole="UserMaster" ToRole="UserRoleMaster" />
+        </EntityType>
+        <EntityType Name="UserRoleMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleAlias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserMasters" Relationship="Self.FK_UserMaster_UserRoleMaster" FromRole="UserRoleMaster" ToRole="UserMaster" />
+        </EntityType>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_GradeMaster">
+          <End Role="GradeMaster" Type="Self.GradeMaster" Multiplicity="1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeMaster">
+              <PropertyRef Name="GradeId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_GradeTypeMaster">
+          <End Role="GradeTypeMaster" Type="Self.GradeTypeMaster" Multiplicity="1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeTypeMaster">
+              <PropertyRef Name="GradeTypeId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="GradeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_QualityParameterMaster">
+          <End Role="QualityParameterMaster" Type="Self.QualityParameterMaster" Multiplicity="1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityParameterMaster">
+              <PropertyRef Name="QualityParameterId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="QualityParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeWiseQualityParameterBaseData_TestMethodMaster">
+          <End Role="TestMethodMaster" Type="Self.TestMethodMaster" Multiplicity="0..1" />
+          <End Role="GradeWiseQualityParameterBaseData" Type="Self.GradeWiseQualityParameterBaseData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMethodMaster">
+              <PropertyRef Name="TestMethodId" />
+            </Principal>
+            <Dependent Role="GradeWiseQualityParameterBaseData">
+              <PropertyRef Name="TestMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+          <End Role="QualityMeasurementUnitMaster" Type="Self.QualityMeasurementUnitMaster" Multiplicity="1" />
+          <End Role="QualityParameterMaster" Type="Self.QualityParameterMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityMeasurementUnitMaster">
+              <PropertyRef Name="QualityMeasurementUnitId" />
+            </Principal>
+            <Dependent Role="QualityParameterMaster">
+              <PropertyRef Name="QualityMeasurementUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_UserRoleMaster">
+          <End Role="UserRoleMaster" Type="Self.UserRoleMaster" Multiplicity="1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoleMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExtrupetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompanySetups" EntityType="Self.CompanySetup" />
+          <EntitySet Name="GradeMasters" EntityType="Self.GradeMaster" />
+          <EntitySet Name="GradeTypeMasters" EntityType="Self.GradeTypeMaster" />
+          <EntitySet Name="GradeWiseQualityParameterBaseDatas" EntityType="Self.GradeWiseQualityParameterBaseData" />
+          <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
+          <EntitySet Name="QualityMeasurementUnitMasters" EntityType="Self.QualityMeasurementUnitMaster" />
+          <EntitySet Name="QualityParameterMasters" EntityType="Self.QualityParameterMaster" />
+          <EntitySet Name="TestMethodMasters" EntityType="Self.TestMethodMaster" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="UserRoleMasters" EntityType="Self.UserRoleMaster" />
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_GradeMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_GradeMaster">
+            <End Role="GradeMaster" EntitySet="GradeMasters" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_GradeTypeMaster" Association="Self.FK_ProductMaster_GradeTypeMaster">
+            <End Role="GradeTypeMaster" EntitySet="GradeTypeMasters" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_QualityParameterMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_QualityParameterMaster">
+            <End Role="QualityParameterMaster" EntitySet="QualityParameterMasters" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeWiseQualityParameterBaseData_TestMethodMaster" Association="Self.FK_GradeWiseQualityParameterBaseData_TestMethodMaster">
+            <End Role="TestMethodMaster" EntitySet="TestMethodMasters" />
+            <End Role="GradeWiseQualityParameterBaseData" EntitySet="GradeWiseQualityParameterBaseDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QualityParameterMaster_QualityMeasurementUnitMaster" Association="Self.FK_QualityParameterMaster_QualityMeasurementUnitMaster">
+            <End Role="QualityMeasurementUnitMaster" EntitySet="QualityMeasurementUnitMasters" />
+            <End Role="QualityParameterMaster" EntitySet="QualityParameterMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserRoleMaster" Association="Self.FK_UserMaster_UserRoleMaster">
+            <End Role="UserRoleMaster" EntitySet="UserRoleMasters" />
+            <End Role="UserMaster" EntitySet="UserMasters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExtrupetModelStoreContainer" CdmEntityContainer="ExtrupetEntities">
+          <EntitySetMapping Name="CompanySetups">
+            <EntityTypeMapping TypeName="ExtrupetModel.CompanySetup">
+              <MappingFragment StoreEntitySet="CompanySetup">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.GradeMaster">
+              <MappingFragment StoreEntitySet="GradeMaster">
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeTypeMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.GradeTypeMaster">
+              <MappingFragment StoreEntitySet="GradeTypeMaster">
+                <ScalarProperty Name="GradeTypeId" ColumnName="GradeTypeId" />
+                <ScalarProperty Name="GradeType" ColumnName="GradeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeWiseQualityParameterBaseDatas">
+            <EntityTypeMapping TypeName="ExtrupetModel.GradeWiseQualityParameterBaseData">
+              <MappingFragment StoreEntitySet="GradeWiseQualityParameterBaseData">
+                <ScalarProperty Name="BaseDataId" ColumnName="BaseDataId" />
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="QualityParameterId" ColumnName="QualityParameterId" />
+                <ScalarProperty Name="BaseValue" ColumnName="BaseValue" />
+                <ScalarProperty Name="TestMethodId" ColumnName="TestMethodId" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.ProductMaster">
+              <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="GradeTypeId" ColumnName="GradeTypeId" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QualityMeasurementUnitMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.QualityMeasurementUnitMaster">
+              <MappingFragment StoreEntitySet="QualityMeasurementUnitMaster">
+                <ScalarProperty Name="QualityMeasurementUnitId" ColumnName="QualityMeasurementUnitId" />
+                <ScalarProperty Name="QualityMeasurementUnitName" ColumnName="QualityMeasurementUnitName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QualityParameterMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.QualityParameterMaster">
+              <MappingFragment StoreEntitySet="QualityParameterMaster">
+                <ScalarProperty Name="QualityParameterId" ColumnName="QualityParameterId" />
+                <ScalarProperty Name="QualityParameterName" ColumnName="QualityParameterName" />
+                <ScalarProperty Name="QualityMeasurementUnitId" ColumnName="QualityMeasurementUnitId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestMethodMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.TestMethodMaster">
+              <MappingFragment StoreEntitySet="TestMethodMaster">
+                <ScalarProperty Name="TestMethodId" ColumnName="TestMethodId" />
+                <ScalarProperty Name="TestMethodName" ColumnName="TestMethodName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastUpdatedOnUTC" ColumnName="LastUpdatedOnUTC" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoleMasters">
+            <EntityTypeMapping TypeName="ExtrupetModel.UserRoleMaster">
+              <MappingFragment StoreEntitySet="UserRoleMaster">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleAlias" ColumnName="RoleAlias" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

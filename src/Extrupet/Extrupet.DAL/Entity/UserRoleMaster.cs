@@ -23,7 +23,7 @@ namespace Extrupet.DAL.Entity
         public byte RoleId { get; set; }
         public string RoleName { get; set; }
         public string RoleAlias { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserMaster> UserMasters { get; set; }

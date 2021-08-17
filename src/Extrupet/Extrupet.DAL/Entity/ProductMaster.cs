@@ -14,13 +14,12 @@ namespace Extrupet.DAL.Entity
     
     public partial class ProductMaster
     {
-        public byte ProductId { get; set; }
+        public System.Guid ProductId { get; set; }
         public string ProductName { get; set; }
         public System.DateTime LastUpdatedOnUTC { get; set; }
-        public int LastUpdatedBy { get; set; }
         public byte GradeTypeId { get; set; }
+        public System.Guid LastUpdatedBy { get; set; }
     
         public virtual GradeTypeMaster GradeTypeMaster { get; set; }
-        public virtual UserMaster UserMaster { get; set; }
     }
 }

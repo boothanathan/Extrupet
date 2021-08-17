@@ -20,8 +20,6 @@ namespace Extrupet.DAL.Entity
         public string Tel { get; set; }
         public string Fax { get; set; }
         public System.DateTime LastUpdatedOnUTC { get; set; }
-        public int LastUpdatedBy { get; set; }
-    
-        public virtual UserMaster UserMaster { get; set; }
+        public System.Guid LastUpdatedBy { get; set; }
     }
 }

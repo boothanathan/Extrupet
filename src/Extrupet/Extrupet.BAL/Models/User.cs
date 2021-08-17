@@ -5,24 +5,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Extrupet.BAL.Utilities;
 
 namespace Extrupet.BAL.Models
 {
     public class UserBase
     {
-        //[Required]
-        //public UserRoleMaster RoleId { get; set; }
+
+        public System.Guid UserId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required] 
         public string EmailId { get; set; }
         public string EmployeeId { get; set; }
-        public bool IsActive { get; set; }
         [Required]
-        public int LastUpdatedById { get; set; }
-        public int UserId { get; set; }
+        public byte RoleId { get; set; }
+        public bool IsActive { get; set; }
+        
+        public Guid LastUpdatedById { get; set; }
     }
+
+
     public class UserSet : UserBase
     {
         //Encryption needed before sending to db
@@ -38,7 +43,7 @@ namespace Extrupet.BAL.Models
         {
             get
             {
-                return LastUpdatedOnUTC.ToLocalTime();
+                return LastUpdatedOnUTC.GetLocalDateTimeFromUtc();
             }
         }
     }

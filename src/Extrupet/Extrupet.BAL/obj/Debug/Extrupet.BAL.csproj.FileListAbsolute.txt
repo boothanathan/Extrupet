@@ -1,2 +1,0 @@
-D:\SvkGit\Extrupet\Project\ExtrupetAPI_Ravi\Extrupet\src\Extrupet\Extrupet.BAL\obj\Debug\Extrupet.BAL.csprojAssemblyReference.cache
-D:\SvkGit\Extrupet\Project\ExtrupetAPI_Ravi\Extrupet\src\Extrupet\Extrupet.BAL\obj\Debug\Extrupet.BAL.csproj.CoreCompileInputs.cache

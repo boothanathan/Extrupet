@@ -14,8 +14,17 @@ namespace Extrupet.DAL.Entity
     
     public partial class TestMethodMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TestMethodMaster()
+        {
+            this.GradeWiseQualityParameterBaseDatas = new HashSet<GradeWiseQualityParameterBaseData>();
+        }
+    
         public byte TestMethodId { get; set; }
         public string TestMethodName { get; set; }
         public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GradeWiseQualityParameterBaseData> GradeWiseQualityParameterBaseDatas { get; set; }
     }
 }

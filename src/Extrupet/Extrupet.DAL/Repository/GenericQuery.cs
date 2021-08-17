@@ -94,7 +94,7 @@ namespace Extrupet.DAL.Repository
 
             return child.childEntitiesInMainEntity;
         }
-        private object _getInstance<TGet>(int primarykeyValue)
+        private object _getInstance<TGet>(Guid primarykeyValue)
         {
             if (typeof(TGet) == typeof(UserMaster))
                 return new UserMaster { UserId = primarykeyValue };

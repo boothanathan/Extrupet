@@ -14,14 +14,21 @@ namespace Extrupet.DAL.Entity
     
     public partial class QualityParameterMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QualityParameterMaster()
+        {
+            this.GradeWiseQualityParameterBaseDatas = new HashSet<GradeWiseQualityParameterBaseData>();
+        }
+    
         public short QualityParameterId { get; set; }
         public string QualityParameterName { get; set; }
         public byte QualityMeasurementUnitId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime LastUpdatedOnUTC { get; set; }
-        public int LastUpdatedBy { get; set; }
+        public System.Guid LastUpdatedBy { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GradeWiseQualityParameterBaseData> GradeWiseQualityParameterBaseDatas { get; set; }
         public virtual QualityMeasurementUnitMaster QualityMeasurementUnitMaster { get; set; }
-        public virtual UserMaster UserMaster { get; set; }
     }
 }

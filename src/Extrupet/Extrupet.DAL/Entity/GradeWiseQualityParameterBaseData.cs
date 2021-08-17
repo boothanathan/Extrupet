@@ -12,21 +12,18 @@ namespace Extrupet.DAL.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class GradeMaster
+    public partial class GradeWiseQualityParameterBaseData
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GradeMaster()
-        {
-            this.GradeWiseQualityParameterBaseDatas = new HashSet<GradeWiseQualityParameterBaseData>();
-        }
-    
+        public int BaseDataId { get; set; }
         public byte GradeId { get; set; }
-        public string GradeName { get; set; }
-        public bool IsActive { get; set; }
+        public short QualityParameterId { get; set; }
+        public string BaseValue { get; set; }
+        public Nullable<byte> TestMethodId { get; set; }
         public System.DateTime LastUpdatedOnUTC { get; set; }
         public System.Guid LastUpdatedBy { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GradeWiseQualityParameterBaseData> GradeWiseQualityParameterBaseDatas { get; set; }
+        public virtual GradeMaster GradeMaster { get; set; }
+        public virtual QualityParameterMaster QualityParameterMaster { get; set; }
+        public virtual TestMethodMaster TestMethodMaster { get; set; }
     }
 }

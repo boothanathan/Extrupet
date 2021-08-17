@@ -7,22 +7,18 @@ using System.Threading.Tasks;
 
 namespace Extrupet.DAL.Repository
 {
-    public class UserRepository : GenericQuery<UserMaster>
+    public class UserRoleMasterRepository : GenericQuery<UserRoleMaster>
     {
         private ExtrupetEntities _context;
-        public UserRepository(ExtrupetEntities context) : base(context)
+        public UserRoleMasterRepository(ExtrupetEntities context) : base(context)
         {
             _context = context;
         }
 
-        public IEnumerable<UserMaster> GetAllUsers()
+        public IEnumerable<UserRoleMaster> GetUserRoles()
         {
             return base.GetQuery(null);
         }
 
-        public UserMaster SaveUsers(UserMaster userMaster)
-        {
-            return base.Add(userMaster);            
-        }
     }
 }

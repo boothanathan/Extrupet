@@ -12,24 +12,24 @@ using System.Threading.Tasks;
 
 namespace Extrupet.BAL.Services
 {
-    public class UserService : IUserService
+    public class UserRoleMasterService : IUserRoleMasterService
     {
-        private readonly UserRepository userDAL;
+        private readonly UserRoleMasterRepository userDAL;
         private readonly Mapper mapper;
 
-        public UserService()
+        public UserRoleMasterService()
         {
-            userDAL = new UserRepository(new ExtrupetEntities());
+            userDAL = new UserRoleMasterRepository(new ExtrupetEntities());
             mapper = new MapperProfile().Mapper;
         }
 
-        public IEnumerable<UserGet> GetAllUsers()
+        public IEnumerable<UserRoleMasterGet> GetUserRoles()
         {
-            var userRoleMaster = userDAL.GetAllUsers().ToList();
-            var userGets = new List<UserGet>();
+            var userRoleMaster = userDAL.GetUserRoles()?.ToList();
+            var userGets = new List<UserRoleMasterGet>();
             foreach (var um in userRoleMaster)
             {
-                userGets.Add(mapper.Map<UserGet>(um));
+                userGets.Add(mapper.Map<UserRoleMasterGet>(um));
             }
 
             return userGets;

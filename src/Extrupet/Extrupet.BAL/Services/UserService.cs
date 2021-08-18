@@ -29,6 +29,12 @@ namespace Extrupet.BAL.Services
             return mapper.Map<UserGet>(user);
         }
 
+        public UserGet GetUserById(Guid userId)
+        {
+            var userMaster = userDAL.GetUser(userId);
+            return mapper.Map<UserGet>(userMaster);
+        }
+
         public IEnumerable<UserGet> GetAllUsers()
         {
             var userRoleMaster = userDAL.GetAllUsers().ToList();
@@ -40,13 +46,13 @@ namespace Extrupet.BAL.Services
 
             return userGets;
         }
-        
+
         public UserGet Login(UserLogin userLogin)
         {
-            var user = userDAL.GetUser(userLogin.LoginId);
-            if(user != null)
+            var user = userDAL.GetUserFromLoginId(userLogin.LoginId);
+            if (user != null)
             {
-                if(user.Password == userLogin.Password) // Need to decrypt
+                if (user.Password == userLogin.Password) // Need to decrypt
                 {
                     return mapper.Map<UserGet>(user);
                 }
@@ -59,6 +65,26 @@ namespace Extrupet.BAL.Services
         {
             var user = userDAL.UpdateUser(mapper.Map<UserMaster>(userSet));
             return mapper.Map<UserGet>(user);
+        }
+
+        public bool UpdateUserActivationStatus(UserGet userGet)
+        {
+            var updatedUser = UpdateUser(mapper.Map<UserSet>(userGet));
+            return updatedUser != null && updatedUser.IsActive == userGet.IsActive;
+        }
+
+        public bool UpdatePassword(UserPassword userPassword)
+        {
+            var userMaster = userDAL.GetUser(userPassword.UserId);
+            var user = mapper.Map<UserSet>(userMaster);
+            if (user.Password == userPassword.OldPassword)
+            {
+                user.Password = userPassword.NewPassword;
+                UpdateUser(user);
+                return true;
+            }
+
+            throw new PasswordNotMatchException();
         }
     }
 }

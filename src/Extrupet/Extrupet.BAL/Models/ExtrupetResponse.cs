@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Extrupet.BAL.Models
 {
-    public class UserLogin
+    public class ExtrupetResponse
     {
-        public string LoginId { get; set; }
-        public string Password { get; set; }
+        public bool  Status{ get; set; }
+        public string  Message{ get; set; }
+        public object ResponseObject { get; set; }
     }
 }

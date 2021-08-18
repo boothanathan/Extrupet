@@ -30,14 +30,12 @@ namespace Extrupet.BAL.Models
 
     public class UserSet : UserBase
     {
-        //Encryption needed before sending to db
-        [Required]
+        //Encryption needed before sending to db    
         public string Password { get; set; }
     }
 
     public class UserGet : UserBase
-    {
-        public string Password { get; set; } // Decryption needed.
+    {       
         public DateTime LastUpdatedOnUTC { get; set; }
         public DateTime LastUpdatedOnLocalTime
         {
@@ -48,5 +46,26 @@ namespace Extrupet.BAL.Models
         }
     }
 
-   
+
+    public class UserLogin
+    {
+        public string LoginId { get; set; }
+        public string Password { get; set; }
+    }
+
+    public class UserActivationStatus
+    {
+        [Required]
+        public Guid UserId { get; set; }
+        [Required]
+        public bool Status { get; set; }
+    }
+
+    public class UserPassword
+    {
+        public Guid UserId { get; set; }
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+    }
+
 }

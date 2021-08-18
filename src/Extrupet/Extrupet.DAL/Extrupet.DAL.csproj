@@ -101,6 +101,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericQuery.cs" />
     <Compile Include="Repository\CompanyDataRepository.cs" />
+    <Compile Include="Repository\GradeMasterRepository.cs" />
+    <Compile Include="Repository\GradeTypeMasterRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UserRoleMasterRepository.cs" />
   </ItemGroup>

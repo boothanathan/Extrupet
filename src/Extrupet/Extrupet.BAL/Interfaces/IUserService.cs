@@ -1,4 +1,5 @@
 using Extrupet.BAL.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Extrupet.BAL.Interfaces
@@ -9,5 +10,8 @@ namespace Extrupet.BAL.Interfaces
         UserGet Login(UserLogin userLogin);
         UserGet CreateUser(UserSet userSet);
         UserGet UpdateUser(UserSet userSet);
+        UserGet GetUserById(Guid userId);
+        bool UpdateUserActivationStatus(UserGet userSet);
+        bool UpdatePassword(UserPassword userSet);
     }
 }

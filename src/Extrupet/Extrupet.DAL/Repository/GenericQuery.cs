@@ -44,21 +44,27 @@ namespace Extrupet.DAL.Repository
                 {
                     dbEntityEntry.Property(property).IsModified = true;
                 }
-                
+
             }
             else
             {
                 //no items mentioned, so find out the updated entries
-                foreach (var property in dbEntityEntry.OriginalValues.PropertyNames)
+                //foreach (var property in dbEntityEntry.OriginalValues.PropertyNames)
+                //{
+                //    var original = dbEntityEntry.OriginalValues.GetValue<object>(property);
+                //    var current = dbEntityEntry.CurrentValues.GetValue<object>(property);
+                //    if (original != null && !original.Equals(current))
+                //        dbEntityEntry.Property(property).IsModified = true;
+                //}
+
+                var updatedProps = dbEntityEntry.CurrentValues.PropertyNames.Where(p => dbEntityEntry.Property(p).IsModified);
+                foreach (var property in updatedProps)
                 {
-                    var original = dbEntityEntry.OriginalValues.GetValue<object>(property);
-                    var current = dbEntityEntry.CurrentValues.GetValue<object>(property);
-                    if (original != null && !original.Equals(current))
-                        dbEntityEntry.Property(property).IsModified = true;
+                    dbEntityEntry.Property(property).IsModified = true;
                 }
             }
 
-            
+
             return entity;
         }
         public virtual T Update(T entity, params Expression<Func<T, object>>[] updatedProperties)
@@ -67,6 +73,9 @@ namespace Extrupet.DAL.Repository
             _dbContext.SaveChanges();
             return e;
         }
+
+       
+
         public virtual T UpdateParentOnly(T entity, params Expression<Func<T, object>>[] updatedProperties)
         {
             return _updateParent(entity, updatedProperties);
@@ -143,6 +152,15 @@ namespace Extrupet.DAL.Repository
                 query = c.GetFilteredList(query);
             }
             return query;
+        }
+
+        public virtual T Update(T entity)
+        {
+            _dbContext.Set<T>().Attach(entity);//added
+            var dbEntityEntry = _dbContext.Entry(entity);
+            dbEntityEntry.State = EntityState.Modified;
+            _dbContext.SaveChanges();
+            return entity;
         }
     }
 

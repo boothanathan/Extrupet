@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,17 +47,20 @@
   <ItemGroup>
     <Compile Include="Interfaces\ICompanyDataService.cs" />
     <Compile Include="Interfaces\IGradeService.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IUserRoleMasterService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\CompanyData.cs" />
     <Compile Include="Models\ExtrupetResponse.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\GradeType.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UserRoleMaster.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompanyDataService.cs" />
     <Compile Include="Services\GradeService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\UserRoleMasterService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Utilities\MapperProfile.cs" />

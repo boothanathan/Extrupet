@@ -45,6 +45,18 @@ namespace Extrupet.BAL.Models
             }
         }
     }
+    
+    public class UserDetailsGet : UserBase
+    {       
+        public DateTime LastUpdatedOnUTC { get; set; }
+        public DateTime LastUpdatedOnLocalTime
+        {
+            get
+            {
+                return LastUpdatedOnUTC.GetLocalDateTimeFromUtc();
+            }
+        }
+    }
 
 
     public class UserLogin

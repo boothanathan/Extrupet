@@ -26,12 +26,18 @@ namespace Extrupet.BAL.Utilities
                 cfg.CreateMap<UserSet, UserMaster>();
                 cfg.CreateMap<UserGet, UserSet>();
                 cfg.CreateMap<UserMaster, UserGet>();
+                cfg.CreateMap<UserMaster, UserDetailsGet>();
 
                 cfg.CreateMap<GradeTypeMaster, GradeTypeGet>();
                 cfg.CreateMap<GradeTypeSet, GradeTypeMaster>();
                 
                 cfg.CreateMap<GradeMaster, GradeGet>();
                 cfg.CreateMap<GradeSet, GradeMaster>();
+
+                cfg.CreateMap<ProductSet, ProductMaster>();
+                cfg.CreateMap<ProductGet, ProductSet>();
+                cfg.CreateMap<ProductMaster, ProductGet>();
+                cfg.CreateMap<ProductMaster, ProductDetailsGet>();
 
 
             });

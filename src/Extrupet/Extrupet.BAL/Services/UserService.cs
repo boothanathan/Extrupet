@@ -34,6 +34,11 @@ namespace Extrupet.BAL.Services
             var userMaster = userDAL.GetUser(userId);
             return mapper.Map<UserGet>(userMaster);
         }
+        public UserDetailsGet GetUserDetailsGetById(Guid userId)
+        {
+            var userMaster = userDAL.GetUser(userId);
+            return mapper.Map<UserDetailsGet>(userMaster);
+        }
 
         public IEnumerable<UserGet> GetAllUsers()
         {
@@ -86,5 +91,7 @@ namespace Extrupet.BAL.Services
 
             throw new PasswordNotMatchException();
         }
+
+       
     }
 }

@@ -36,6 +36,15 @@ namespace Extrupet.API.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("GetUser/{Id}")]
+        public IHttpActionResult GetUser(Guid Id)
+        {
+            var user = userService.GetUserDetailsGetById(Id);
+            response = new ExtrupetResponse { Status = true, ResponseObject = user };
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("UpdateUser")]
         public IHttpActionResult UpdateUser(UserSet userSet)
@@ -74,7 +83,7 @@ namespace Extrupet.API.Controllers
                     return Ok(response);
                 }
 
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             return BadRequest(ModelState);

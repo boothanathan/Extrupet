@@ -11,6 +11,7 @@ namespace Extrupet.BAL.Interfaces
         UserGet CreateUser(UserSet userSet);
         UserGet UpdateUser(UserSet userSet);
         UserGet GetUserById(Guid userId);
+        UserDetailsGet GetUserDetailsGetById(Guid userId);
         bool UpdateUserActivationStatus(UserGet userSet);
         bool UpdatePassword(UserPassword userSet);
     }

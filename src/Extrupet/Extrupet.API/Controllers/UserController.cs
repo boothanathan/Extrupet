@@ -14,8 +14,7 @@ namespace Extrupet.API.Controllers
     [RoutePrefix("Api/User")]
     public class UserController : ApiController
     {
-        private readonly IUserService userService = new UserService();
-        private readonly ICompanyDataService companyDataService = new CompanyDataService();
+        private readonly IUserService userService = new UserService();        
         private ExtrupetResponse response;
         
         [HttpGet]

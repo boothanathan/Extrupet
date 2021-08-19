@@ -14,8 +14,7 @@ namespace Extrupet.API.Controllers
     [RoutePrefix("Api/Product")]
     public class ProductController : ApiController
     {
-        private readonly IProductService productService = new ProductService();
-        private readonly ICompanyDataService companyDataService = new CompanyDataService();
+        private readonly IProductService productService = new ProductService();       
         private ExtrupetResponse response;
 
         [HttpPost]

@@ -13,16 +13,14 @@ namespace Extrupet.API.Controllers
     [RoutePrefix("Api/Settings")]
     public class SettingsController : ApiController
     {
-        private readonly IUserRoleMasterService userRoleMasterService = new UserRoleMasterService();
-        private readonly ICompanyDataService companyDataService = new CompanyDataService();
-        private readonly IGradeService gradeService = new GradeService();
+        private readonly ISettingsService settingsService = new SettingsService();
         private ExtrupetResponse response;
         
         [HttpGet]
         [Route("GetUserRoles")]
         public IHttpActionResult GetUserRoles()
         {
-            var roles = userRoleMasterService.GetUserRoles();
+            var roles = settingsService.GetUserRoles();
             response = new ExtrupetResponse { Status = true, ResponseObject = roles };
             return Ok(response);
         }
@@ -31,7 +29,7 @@ namespace Extrupet.API.Controllers
         [Route("GetCompanyData")]
         public IHttpActionResult GetCompanyData()
         {
-            IEnumerable<CompanyDataGet> companies = companyDataService.GetCompanyData();
+            IEnumerable<CompanyDataGet> companies = settingsService.GetCompanyData();
             response = new ExtrupetResponse { Status = true, ResponseObject = companies };
             return Ok(response);
         }
@@ -42,7 +40,7 @@ namespace Extrupet.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var companyDataGet = companyDataService.SaveCompanyData(companyDataSet);
+                var companyDataGet = settingsService.SaveCompanyData(companyDataSet);
                 response = new ExtrupetResponse { Status = true, ResponseObject = companyDataGet };
                 return Ok(response);
             }
@@ -54,7 +52,7 @@ namespace Extrupet.API.Controllers
         [Route("GetAllGradeTypes")]
         public IHttpActionResult GetAllGradeTypes()
         {
-            var grades = gradeService.GetAllGradeTypeMasters();
+            var grades = settingsService.GetAllGradeTypeMasters();
             response = new ExtrupetResponse { Status = true, ResponseObject = grades };
             return Ok(response);
         }
@@ -65,7 +63,7 @@ namespace Extrupet.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var companyDataGet = gradeService.AddOrUpdateGradeTypeMaster(gradeTypeSet);
+                var companyDataGet = settingsService.AddOrUpdateGradeTypeMaster(gradeTypeSet);
                 response = new ExtrupetResponse { Status = true, ResponseObject = companyDataGet };
                 return Ok(response);
             }
@@ -77,7 +75,7 @@ namespace Extrupet.API.Controllers
         [Route("GetAllGrades")]
         public IHttpActionResult GetAllGrades()
         {
-            var grades = gradeService.GetAllGradeMasters();
+            var grades = settingsService.GetAllGradeMasters();
             response = new ExtrupetResponse { Status = true, ResponseObject = grades };
             return Ok(response);
         }
@@ -88,7 +86,7 @@ namespace Extrupet.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var companyDataGet = gradeService.AddOrUpdateGradeMaster(gradeSet);
+                var companyDataGet = settingsService.AddOrUpdateGradeMaster(gradeSet);
                 response = new ExtrupetResponse { Status = true, ResponseObject = companyDataGet };
                 return Ok(response);
             }
